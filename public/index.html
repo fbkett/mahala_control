@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de Control - Lencería</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Tablero de Control</h1>
+    <section id="stock-management">
+        <h2>Manejo de Stock</h2>
+        <form id="product-form">
+            <input type="text" id="product-name" placeholder="Nombre del Producto" required>
+            <input type="text" id="product-description" placeholder="Descripción" required>
+            <input type="text" id="product-size" placeholder="Talle" required>
+            <input type="number" id="product-price" placeholder="Precio" required>
+            <input type="number" id="product-quantity" placeholder="Cantidad" required>
+            <button type="submit">Agregar Producto</button>
+        </form>
+        <ul id="product-list"></ul>
+    </section>
+    <script src="app.js"></script>
+</body>
+</html> 

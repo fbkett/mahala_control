@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const supabase = require('./database'); // Importa la configuración de Supabase
@@ -32,7 +33,28 @@ app.post('/api/products', async (req, res) => {
     if (error) {
         return res.status(500).json({ error: error.message });
     }
+
+    if (!data || data.length === 0) {
+        return res.status(500).json({ error: 'Failed to insert product' });
+    }
+
     res.json({ id: data[0].id });
+});
+
+// Ruta para actualizar la cantidad de un producto
+app.put('/api/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const { quantity } = req.body;
+    const { data, error } = await supabase
+        .from('products')
+        .update({ quantity })
+        .eq('id', id);
+
+    if (error) {
+        return res.status(500).json({ error: error.message });
+    }
+
+    res.json({ message: 'Cantidad actualizada', data });
 });
 
 app.listen(PORT, () => {
